@@ -1,0 +1,48 @@
+version: "3"
+
+services:
+  mariadb:
+    build: requirements/mariadb/
+    volumes:
+      - mariadb:/var/lib/mysql
+    networks:
+      - inception
+    restart: always
+  wordpress:
+    build: requirements/wordpress/
+    volumes:
+      - wordpress:/www
+    networks:
+      - inception
+    depends_on:
+      - mysql
+    restart: always
+  nginx:
+    build: requirements/nginx/
+    volumes:
+      - wordpress:/www
+    networks:
+      - inception
+    ports:
+      - "443:443"
+    depends_on:
+      - wordpress
+    restart: always
+
+networks:
+  inception:
+    driver: bridge
+
+volumes:
+  mariadb:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/mterkhoy/data/mariadb
+  wordpress:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/mterkhoy/data/wordpress
