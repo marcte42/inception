@@ -1,9 +1,6 @@
-FROM alpine:3.14
-RUN apk add --no-cache nginx openssl
-RUN adduser -D -g 'www' www \
-    && mkdir /www \
-    && chown -R www:www /var/lib/nginx \
-    && chown -R www:www /www \
+FROM debian:buster
+RUN apt-get update && apt-get install -y nginx openssl
+RUN chown -R www-data:www-data /var/lib/nginx \
     && ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log \
 	&& openssl req -x509 -nodes -days 1 -newkey rsa:2048 		\
