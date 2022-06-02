@@ -7,7 +7,6 @@ RUN apt-get update \
 
 COPY ./tools/entrypoint.sh /tmp/entrypoint.sh
 COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
-COPY ./conf/db_setup.sql /tmp/db_setup.sql
 
 RUN mysql_install_db --user=mysql \
 	&& mkdir /run/mysqld \
