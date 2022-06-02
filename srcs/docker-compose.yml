@@ -3,6 +3,11 @@ version: "3"
 services:
   mariadb:
     build: requirements/mariadb/
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      WP_DATABASE_NAME: ${WP_DATABASE_NAME}
+      WP_DATABASE_USER: ${WP_DATABASE_USER}
+      WP_DATABASE_PASSWORD: ${WP_DATABASE_PASSWORD}
     volumes:
       - mariadb:/var/lib/mysql
     networks:
@@ -10,6 +15,18 @@ services:
     restart: always
   wordpress:
     build: requirements/wordpress/
+    environment:
+      MYSQL_HOST: ${MYSQL_HOST}
+      WP_DATABASE_NAME: ${WP_DATABASE_NAME}
+      WP_DATABASE_USER: ${WP_DATABASE_USER}
+      WP_DATABASE_PASSWORD: ${WP_DATABASE_PASSWORD}
+      WP_TITLE: ${WP_TITLE}
+      WP_ADMIN_USER: ${WP_ADMIN_USER}
+      WP_ADMIN_PASSWORD: ${WP_ADMIN_PASSWORD}
+      WP_ADMIN_EMAIL: ${WP_ADMIN_EMAIL}
+      WP_USER: ${WP_USER}
+      WP_PASSWORD: ${WP_PASSWORD}
+      WP_EMAIL: ${WP_EMAIL}
     volumes:
       - wordpress:/var/www/html/wordpress
     networks:
