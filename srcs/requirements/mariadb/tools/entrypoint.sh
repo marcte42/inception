@@ -3,7 +3,6 @@
 if ! [ -d "/var/lib/mysql/wordpress" ]; then
 	mysqld &
 	sleep 5
-	#mysql -sfu root < "/tmp/db_setup.sql"
 
 	mysql -e "UPDATE mysql.user SET Password=PASSWORD('${MYSQL_ROOT_PASSWORD}') WHERE User='root';"
 	mysql -e "DELETE FROM mysql.user WHERE User='';"
