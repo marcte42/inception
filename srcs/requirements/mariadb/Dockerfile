@@ -16,23 +16,3 @@ RUN mysql_install_db --user=mysql \
 ENTRYPOINT ["/tmp/entrypoint.sh"]
 CMD ["mysqld_safe"]
 
-
-# RUN apt-get install mariadb mariadb-client
-
-# RUN mysql_install_db \
-#     && mkdir -p /run/mysqld && chown -R mysql:mysql /run/mysqld
-
-
-# COPY ./conf/mariadb-server.cnf /etc/my.cnf.d/mariadb-server.cnf
-
-
-
-# # COPY ./tools/startup.sh /startup.sh
-
-
-
-# # RUN chmod 777 /startup.sh
-# #
-# # ENTRYPOINT ["/startup.sh"]
-
-# ENTRYPOINT ["tail", "-f"];
