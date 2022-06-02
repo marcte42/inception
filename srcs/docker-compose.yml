@@ -37,6 +37,8 @@ services:
     restart: always
   nginx:
     build: requirements/nginx/
+    environment:
+      WP_HOST: ${WP_HOST}
     volumes:
       - wordpress:/var/www/html/wordpress
     networks:
